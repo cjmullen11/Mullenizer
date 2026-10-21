@@ -31,8 +31,8 @@ python meyerbot_entry.py
 
 | File | Purpose |
 |---|---|
-| `meyerbot_entry.py` | Application entry point |
-| `meyerbot_gui.py` | Desktop interface |
+| `mullenizer_entry.py` | Application entry point |
+| `mullenizer_gui.py` | Desktop interface |
 | `run_detection_pipeline.py` | Processing orchestration |
 | `render_pdf.py` | PDF rendering |
 | `deskew_pages.py` | Image alignment |
