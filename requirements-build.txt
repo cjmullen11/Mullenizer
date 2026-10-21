@@ -1,0 +1,9 @@
+# Install in a fresh Windows x64 Python 3.13 virtual environment.
+# Tkinter ships with the standard python.org Windows Python installer.
+# Use only one OpenCV package in this environment.
+numpy
+opencv-python-headless
+Pillow
+pypdfium2
+pytesseract
+pyinstaller==6.22.3
