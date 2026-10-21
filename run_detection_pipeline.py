@@ -1,4 +1,4 @@
-"""Run MeyerBot's three-stage PDF-to-review pipeline.
+"""Run Mullenizer's three-stage PDF-to-review pipeline.
 
 Render, deskew, and OCR each PDF, then retain up to five distinct pages per
 metric ranked by OCR evidence. Only OCR hits in the shortest ranked prefix
@@ -31,7 +31,7 @@ from typing import Any
 # PIPELINE CONSTANTS
 # -----------------------------------------------------------------------------
 
-DEFAULT_OUTPUT_ROOT = "output/meyerbot_v2"
+DEFAULT_OUTPUT_ROOT = "output/mullenizer"
 DEFAULT_RENDER_DPI = 200
 
 # The current review design retains at most five areas for each of the three
@@ -50,7 +50,7 @@ DUPLICATE_PATH_HASH_CHARS = 8
 AUTO_RESERVED_CPU_FRACTION = 0.25
 AUTO_MIN_RESERVED_CORES_ON_LARGE_SYSTEM = 2
 AUTO_LARGE_SYSTEM_CORE_THRESHOLD = 8
-PIPELINE_EVENT_PREFIX = "MEYERBOT_EVENT "
+PIPELINE_EVENT_PREFIX = "MULLENIZER_EVENT "
 
 # External libraries used by OCR and image processing may otherwise create
 # extra thread pools inside every parallel PDF worker. These limits prevent
@@ -115,7 +115,7 @@ def resolve_tesseract_command(explicit_command: str | None) -> str | None:
 
         if not candidate.is_file():
             raise FileNotFoundError(
-                "Packaged mullenizer could not find its bundled Tesseract "
+                "Packaged Mullenizer could find its bundled Tesseract "
                 f"executable at: {candidate}"
             )
 
@@ -167,7 +167,7 @@ def build_stage_command(
     if running_frozen():
         return [
             sys.executable,
-            "--meyerbot-stage",
+            "--mullenizer-stage",
             stage_name,
             *arguments,
         ]
@@ -720,7 +720,7 @@ def collect_final_outputs(
     retained_page_paths = sorted(retained_pages.values())
 
     results = {
-        "pipeline_version": "Mullenizer v2",
+        "pipeline_version": "Mullenizer 1.0",
         "completed_at_utc": utc_now_text(),
         "source_pdf": str(source_pdf),
         "source_pdf_name": source_pdf.name,
@@ -899,7 +899,7 @@ def process_one_pdf(job: dict[str, Any]) -> dict[str, Any]:
         append_log(
             log_path,
             (
-                f"MeyerBot v2 pipeline\n"
+                f"Mullenizer 1.0 pipeline\n"
                 f"PDF: {source_pdf}\n"
                 f"Job: {job_name}\n"
                 f"Started: {utc_now_text()}\n"
@@ -1213,7 +1213,7 @@ def main() -> None:
     """
     parser = argparse.ArgumentParser(
         description=(
-            "Run the parallel MeyerBot v2 OCR-first candidate pipeline."
+            "Run the parallel Mullenizer 1.0 OCR-first candidate pipeline."
         ),
     )
 
@@ -1342,7 +1342,7 @@ def main() -> None:
     failed_count = len(results) - successful_count
 
     batch_summary = {
-        "pipeline_version": "Mullenizer v2",
+        "pipeline_version": "Mullenizer 1.0",
         "completed_at_utc": utc_now_text(),
         "output_root": str(output_root),
         "pdf_count": len(pdf_paths),

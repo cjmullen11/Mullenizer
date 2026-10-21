@@ -88,7 +88,7 @@ HEART_RATE_EXPLICIT_REASONS = {'V Rate', 'Vent Rate', 'average heart rate', 'hea
 ACTIVITY_PATTERNS: tuple[tuple[re.Pattern[str], float, str], ...] = ((re.compile('\\b(?:average|avg\\.?|ave\\.?|mean)\\s+(?:daily\\s+)?activity\\b', re.IGNORECASE), 125.0, 'average daily activity'), (re.compile('\\bdaily\\s+(?:average|avg\\.?|ave\\.?|mean)\\s+activity\\b', re.IGNORECASE), 125.0, 'average daily activity'), (re.compile('\\bdaily[\\s._:/-]*activity\\b', re.IGNORECASE), 105.0, 'daily activity'), (re.compile('\\bpatient[\\s._:/-]*activity\\b', re.IGNORECASE), 88.0, 'patient activity'), (re.compile('\\b(?:active\\s+time|time\\s+active)\\b', re.IGNORECASE), 76.0, 'active time'), (re.compile('\\bactivity\\b', re.IGNORECASE), 62.0, 'activity'), (re.compile('\\b(?:hours?|hrs?|h)\\s*(?:/|per)\\s*day\\b', re.IGNORECASE), 40.0, 'activity time unit'), (re.compile('\\b(?:minutes?|mins?|min)\\s*(?:/|per)\\s*day\\b', re.IGNORECASE), 40.0, 'activity time unit'))
 ACTIVITY_FUZZY_PHRASES: tuple[tuple[str, float, str], ...] = (('average daily activity', 108.0, 'near-match average daily activity'), ('daily activity', 90.0, 'near-match daily activity'), ('patient activity', 76.0, 'near-match patient activity'), ('active time', 66.0, 'near-match active time'))
 ACTIVITY_FUZZY_MINIMUM_RATIO = 0.76
-# EDIT HERE to tune how MeyerBot ranks OCR review suggestions for each metric.
+# EDIT HERE to tune how Mullenizer ranks OCR review suggestions for each metric.
 # "prefer" and "penalize" map whole-word phrases to points added to the base score.
 # "reject" lists hard exclusions (regex, reason) that never reach the review UI.
 # Graph-title preferences apply to BOTH graph metrics; demographic/AFib value
@@ -1353,7 +1353,7 @@ def analyze_page_folder(input_dir: Path, language: str, page_segmentation_mode: 
     return {'input_dir': str(input_dir), 'page_count': len(page_results), 'ocr_language': language, 'page_segmentation_mode': page_segmentation_mode, 'ocr_scale': ocr_scale, 'total_ocr_seconds': round(total_seconds, 6), 'patient_name': {'status': 'found' if selected_patient_name is not None else 'not_found', 'selected': selected_patient_name, 'detected_candidate_count': len(all_patient_name_candidates), 'candidate_count': len(retained_patient_names), 'candidate_limit': top_demographic_candidates, 'candidates': retained_patient_names}, 'date_of_birth': {'status': 'found' if selected_date_of_birth is not None else 'not_found', 'selected': selected_date_of_birth, 'detected_candidate_count': len(all_date_of_birth_candidates), 'candidate_count': len(retained_dates_of_birth), 'candidate_limit': top_demographic_candidates, 'candidates': retained_dates_of_birth}, 'afib_burden': {'status': 'found' if selected_afib_candidate is not None else 'not_found', 'selected': selected_afib_candidate, 'detected_candidate_count': len(all_afib_candidates), 'candidate_count': len(retained_afib_candidates), 'candidate_limit': top_afib_candidates, 'candidates': retained_afib_candidates}, 'average_heart_rate': {'status': 'guides_found' if heart_rate_guides else 'not_found', 'guides': heart_rate_guides}, 'average_daily_activity': {'status': 'guides_found' if activity_guides else 'not_found', 'guides': activity_guides}, 'pages': page_results}
 
 def running_frozen() -> bool:
-    """Return True when OCR is running inside the packaged MeyerBot executable."""
+    """Return True when OCR is running inside the packaged Mullenizer executable."""
     return bool(getattr(sys, 'frozen', False))
 
 def configure_tesseract(explicit_command: str | None) -> tuple[Path, Path | None]:
@@ -1392,7 +1392,7 @@ def save_json(data: dict[str, Any], output_path: Path) -> None:
 
 def main() -> None:
     """Parse OCR CLI options, analyze pages and save the ranked result JSON."""
-    parser = argparse.ArgumentParser(description='OCR deskewed MeyerBot pages for AFib burden and graph guides.')
+    parser = argparse.ArgumentParser(description='OCR deskewed Mullenizer pages for AFib burden and graph guides.')
     parser.add_argument('input_dir', help='Directory containing deskewed page images.')
     parser.add_argument('--out', default=DEFAULT_OUTPUT_PATH, help=f'Output JSON path. Default: {DEFAULT_OUTPUT_PATH}')
     parser.add_argument('--top-afib-candidates', type=int, default=DEFAULT_TOP_AFIB_CANDIDATES, help=f'Maximum AFib candidates to retain; 0 retains all. Default: {DEFAULT_TOP_AFIB_CANDIDATES}')

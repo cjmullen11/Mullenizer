@@ -6,8 +6,8 @@ import sys
 from multiprocessing import freeze_support
 
 
-PIPELINE_FLAG = "--meyerbot-pipeline"
-STAGE_FLAG = "--meyerbot-stage"
+PIPELINE_FLAG = "--mullenizer-pipeline"
+STAGE_FLAG = "--mullenizer-stage"
 
 VALID_STAGES = ("render", "deskew", "ocr")
 
@@ -17,8 +17,8 @@ def call_module_main(module_name: str, arguments: list[str]) -> None:
 
     Explicit imports let PyInstaller discover the modules without hidden imports.
     """
-    if module_name == "meyerbot_gui":
-        import meyerbot_gui as module
+    if module_name == "mullenizer_gui":
+        import mullenizer_gui as module
     elif module_name == "run_detection_pipeline":
         import run_detection_pipeline as module
     elif module_name == "render_pdf":
@@ -80,7 +80,7 @@ def main() -> None:
         call_module_main(module_name, arguments[2:])
         return
 
-    call_module_main("meyerbot_gui", arguments)
+    call_module_main("mullenizer_gui", arguments)
 
 
 if __name__ == "__main__":

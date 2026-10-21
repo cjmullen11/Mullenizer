@@ -1,8 +1,6 @@
-# Mullenizer
+# Mullenizer 1.0
 
-Mullenizer is a Python desktop application for extracting and reviewing information from cardiac device reports (PDFs). It combines automated document processing with human-guided graph interpretation. It is primarily OCR based. Its goal is to streamline data collection by acting as a tool to report reviewers, NOT to replace reviewers or provide automation. All data should be validated; no claims are made about privacy, reliability, or accuracy.
-
-Thank you to the teams behind OpenCV, tesseract, all other dependencies, and the open source community as a whole - much of this was made very easy by the generous sharing of other similar projects. 
+Mullenizer is a Python desktop application for extracting and reviewing information from cardiac device reports (PDFs). It combines automated document processing with human-guided graph interpretation.
 
 ## Features
 
@@ -23,33 +21,23 @@ Thank you to the teams behind OpenCV, tesseract, all other dependencies, and the
 Install the Python dependencies and Tesseract OCR, then launch:
 
 ```bash
-python meyerbot_entry.py
+python mullenizer_entry.py
 ```
 
+Packaged Windows releases can include all dependencies.
 
 ## Project Structure
 
 | File | Purpose |
 |---|---|
-| `meyerbot_entry.py` | Application entry point |
-| `meyerbot_gui.py` | Desktop interface |
+| `mullenizer_entry.py` | Application entry point |
+| `mullenizer_gui.py` | Desktop interface |
 | `run_detection_pipeline.py` | Processing orchestration |
 | `render_pdf.py` | PDF rendering |
 | `deskew_pages.py` | Image alignment |
 | `ocr_report_targets.py` | OCR and information extraction |
 | `human_guided_graph_interpreter.py` | Graph digitization |
 
-## Status 
+## Status
 
-In testing / finalizing.
-
-Possible extensions/revisions:
-
- - Web based version
-      This project is setup well to be converted into this. Due to the constraints it was created under (privacy, ease of use, and resources), it was determined that a "small" local gui would be more appropriate.
-
-- GUI for self adjustment of keywords and metrics to be searched for
-
-- Much optimization could be done, in terms of documentation and functionality/code.
-
-- A deskew-less version for those that it is not applicable to.
+Under active development. Automated extraction and graph interpretation require human review.

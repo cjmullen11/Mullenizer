@@ -1,4 +1,4 @@
-"""Mullenizer v2 desktop GUI.
+"""Mullenizer 1.0 desktop GUI.
 
 Keep the UI layer focused on orchestration: select PDFs, stream pipeline events,
 review candidates, edit the tracker, render overlays, and invoke manual graph
@@ -21,7 +21,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from PIL import Image, ImageTk
 from human_guided_graph_interpreter import DEFAULT_HISTOGRAM_BIN_WIDTH, adjust_histogram_column_height, digitize_histogram, digitize_line_graph, histogram_known_bin_count, save_json as save_digitization_json
-WINDOW_TITLE = 'Mullenizer v2'
+WINDOW_TITLE = 'Mullenizer 1.0'
 DEFAULT_WINDOW_SIZE = '1180x860'
 MINIMUM_WINDOW_WIDTH = 900
 MINIMUM_WINDOW_HEIGHT = 650
@@ -138,7 +138,7 @@ def hidden_subprocess_creation_flags() -> int:
 def build_pipeline_command(pipeline_path: Path, pdf_paths: list[Path], output_root: Path) -> list[str]:
     """Build the source-mode or frozen pipeline command."""
     if running_frozen():
-        command = [sys.executable, '--meyerbot-pipeline']
+        command = [sys.executable, '--mullenizer-pipeline']
     else:
         command = [sys.executable, '-u', str(pipeline_path)]
     command.extend((str(pdf_path) for pdf_path in pdf_paths))
@@ -828,7 +828,7 @@ class GraphInterpretationDialog:
         self.window.destroy()
 
 
-class MeyerBotGui:
+class MullenizerGui:
     """PDF/folder-processing and sequential candidate-review application."""
 
     def __init__(self, root: tk.Tk) -> None:
@@ -2591,7 +2591,7 @@ class MeyerBotGui:
             return
         reviewed_stat_count = sum((len(pdf_decision['stats']) for pdf_decision in self.review_decisions.values()))
         total_stat_count = len(self.review_pdfs) * len(STAT_ORDER)
-        results = {'pipeline_version': 'Mullenizer v2', 'updated_at_utc': utc_now_text(), 'source_folder': str(self.selected_folder) if self.selected_folder is not None else None, 'input_mode': 'folder' if self.selected_folder is not None else 'selected_pdfs', 'output_root': str(self.output_root), 'submitted_pdf_count': self.total_pdf_count, 'successful_pdf_count': len(self.review_pdfs), 'processing_complete': self.pipeline_finished, 'failed_pdf_count': self.failed_pdf_count, 'review_complete': review_complete, 'reviewed_stat_count': reviewed_stat_count, 'total_reviewable_stat_count': total_stat_count, 'highlight_preference': self.highlights_visible, 'pdfs': sorted(self.review_decisions.values(), key=lambda item: int(item.get('batch_position', 0)))}
+        results = {'pipeline_version': 'Mullenizer 1.0', 'updated_at_utc': utc_now_text(), 'source_folder': str(self.selected_folder) if self.selected_folder is not None else None, 'input_mode': 'folder' if self.selected_folder is not None else 'selected_pdfs', 'output_root': str(self.output_root), 'submitted_pdf_count': self.total_pdf_count, 'successful_pdf_count': len(self.review_pdfs), 'processing_complete': self.pipeline_finished, 'failed_pdf_count': self.failed_pdf_count, 'review_complete': review_complete, 'reviewed_stat_count': reviewed_stat_count, 'total_reviewable_stat_count': total_stat_count, 'highlight_preference': self.highlights_visible, 'pdfs': sorted(self.review_decisions.values(), key=lambda item: int(item.get('batch_position', 0)))}
         save_json(data=results, output_path=self.output_root / REVIEW_RESULTS_FILENAME)
         self._save_tracker_csv()
 
@@ -3846,7 +3846,7 @@ def main() -> None:
     and editing/export of tracker values.
     """
     root = tk.Tk()
-    MeyerBotGui(root)
+    MullenizerGui(root)
     root.mainloop()
 if __name__ == '__main__':
     main()

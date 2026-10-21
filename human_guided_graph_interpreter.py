@@ -3430,7 +3430,7 @@ def digitize_histogram(
     }
 
     return {
-        "interpreter_version": "Mullenizer human-guided graph interpreter v2",
+        "interpreter_version": "Mullenizer human-guided graph interpreter 1.0",
         "interpretation_mode": "histogram",
         "target": target,
         "source_image": str(image_path.expanduser().resolve()),
@@ -3550,7 +3550,7 @@ def digitize_line_graph(
         )
 
     return {
-        "interpreter_version": "Mullenizer human-guided graph interpreter v2",
+        "interpreter_version": "Mullenizer human-guided graph interpreter 1.0",
         "interpretation_mode": "line",
         "target": target,
         "source_image": str(image_path.expanduser().resolve()),
