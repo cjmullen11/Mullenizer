@@ -49,3 +49,7 @@ Possible extensions/revisions:
       This project is setup well to be converted into this. Due to the constraints it was created under (privacy, ease of use, and resources), it was determined that a "small" local gui would be more appropriate.
 
 - GUI for self adjustment of keywords and metrics to be searched for
+
+- Much optimization could be done, in terms of documentation and functionality/code.
+
+- A deskew-less version for those that it is not applicable to.
