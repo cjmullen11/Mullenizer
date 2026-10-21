@@ -1,6 +1,6 @@
 # Mullenizer
 
-Mullenizer is a Python desktop application for extracting and reviewing information from cardiac device reports (PDFs). It combines automated document processing with human-guided graph interpretation. It is primarily OCR based. Its goal is to streamline data collection by acting as a tool to report reviewers, NOT to replace reviewers or provide automation. All data should be validated. 
+Mullenizer is a Python desktop application for extracting and reviewing information from cardiac device reports (PDFs). It combines automated document processing with human-guided graph interpretation. It is primarily OCR based. Its goal is to streamline data collection by acting as a tool to report reviewers, NOT to replace reviewers or provide automation. All data should be validated; no claims are made about privacy, reliability, or accuracy.
 
 Thank you to the teams behind OpenCV, tesseract, all other dependencies, and the open source community as a whole - much of this was made very easy by the generous sharing of other similar projects. 
 
@@ -39,10 +39,13 @@ python meyerbot_entry.py
 | `ocr_report_targets.py` | OCR and information extraction |
 | `human_guided_graph_interpreter.py` | Graph digitization |
 
-## Status
+## Status 
 
-In testing, finalizing.
+In testing / finalizing.
 
-## License/Use
+Possible extensions/revisions:
 
-Feel free to use or fork anything. No claims are made about reliability or accuracy.
+ - Web based version
+      This project is setup well to be converted into this. Due to the constraints it was created under (privacy, ease of use, and resources), it was determined that a "small" local gui would be more appropriate.
+
+- GUI for self adjustment of keywords and metrics to be searched for
