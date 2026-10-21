@@ -4,6 +4,10 @@ Mullenizer is a Python desktop application for extracting and reviewing informat
 
 Thank you to the teams behind OpenCV, tesseract, all other dependencies, and the open source community as a whole - much of this was made very easy by the generous sharing of other similar projects. 
 
+## Use
+ On linux, you can run meyerbot_gui.py directly as described below. Ensure all dependencies are available.
+ On windows, use the published installer.
+
 ## Features
 
 - **PDF processing:** Render, deskew, and OCR report pages.
@@ -53,3 +57,7 @@ Possible extensions/revisions:
 - Much optimization could be done, in terms of documentation and functionality/code.
 
 - A deskew-less version for those that it is not applicable to.
+
+
+
+I am happy to clarify anything to assist with the extensions of others, however do consider this was my first project using many of these libraries.
