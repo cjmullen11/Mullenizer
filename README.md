@@ -5,14 +5,8 @@ Mullenizer is a Python desktop application for extracting and reviewing informat
 Thank you to the teams behind OpenCV, tesseract, all other dependencies, and the open source community as a whole - much of this was made very easy by the generous sharing of other similar projects. 
 
 ## Running
- On linux, you can run meyerbot_gui.py directly as described below. Ensure all dependencies are available.
- Install the Python dependencies and Tesseract OCR, then launch:
+On windows click on the releases and download the installer. Run the installer, then run the application as any other.
 
-```bash
-python meyerbot_entry.py
-```
-
- On windows, use the published installer. Run as any normal app.
 
 ## Features
 
