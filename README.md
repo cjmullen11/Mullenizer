@@ -1,26 +1,23 @@
 # Mullenizer
 
-Mullenizer is a Python desktop application for extracting and reviewing information from cardiac device reports (PDFs). It combines automated document processing with human-guided graph interpretation. It is primarily OCR based. Its goal is to streamline data collection by acting as a tool to report reviewers, NOT to replace reviewers or provide automation. All data should be validated; no claims are made about privacy, reliability, or accuracy.
+**Status:** Testing / Finalizing  
+**Technologies:** Python · OpenCV · Tesseract OCR · NumPy · Tkinter · PDF processing
 
-Thank you to the teams behind OpenCV, tesseract, all other dependencies, and the open source community as a whole - much of this was made very easy by the generous sharing of other similar projects. 
+## Overview
 
-## Running
-On windows click on the releases and download the installer. Run the installer, then run the application as any other.
+Mullenizer is a Python desktop application for extracting and reviewing information from cardiac device reports in PDF format. It uses primarily OCR-based document processing to identify report data and combines automated detection with human-guided interpretation of graphs. The goal is to streamline data collection for report reviewers, not replace their judgment or remove human oversight.
 
+The name *Mullenizer* is derived from my surname.
 
-## Features
+**All extracted data must be independently validated.** No claims are made regarding the application's privacy, reliability, or accuracy.
 
-- **PDF processing:** Render, deskew, and OCR report pages.
-- **Data extraction:** Identify patient demographics, AFib burden, and relevant heart rate/activity information.
-- **Guided review:** Highlight likely matches for human verification.
-- **Graph interpretation:** Manually select and digitize line graphs and histograms.
-- **Export:** Save reviewed measurements and results to CSV/JSON.
+## Key Design Choices
 
-## Dependencies
-
-- **Python 3** with `opencv-python`, `numpy`, `Pillow`, `pypdfium2`, and `pytesseract`
-- **Tkinter** for the desktop GUI
-- **Tesseract OCR** with English language data
+- **OCR-based extraction:** Render, deskew, and analyze PDF pages to identify demographics, atrial fibrillation (AFib) burden, and heart-rate and activity data.
+- **Human-guided review:** Highlight likely matches for reviewers to verify rather than treating detected results as definitive.
+- **Graph digitization:** Let reviewers manually select and interpret line graphs and histograms.
+- **Desktop-first design:** Use a lightweight Tkinter interface, chosen over a web app because of privacy-related constraints, ease of use, and available resources. This does not guarantee data privacy.
+- **Structured export:** Save reviewed data to CSV or JSON.
 
 ## Project Structure
 
@@ -30,25 +27,38 @@ On windows click on the releases and download the installer. Run the installer, 
 | `mullenizer_gui.py` | Desktop interface |
 | `run_detection_pipeline.py` | Processing orchestration |
 | `render_pdf.py` | PDF rendering |
-| `deskew_pages.py` | Image alignment |
+| `deskew_pages.py` | Page alignment |
 | `ocr_report_targets.py` | OCR and information extraction |
-| `human_guided_graph_interpreter.py` | Graph digitization |
+| `human_guided_graph_interpreter.py` | Interactive graph digitization |
 
-## Status 
+## Roadmap
 
-In testing / finalizing.
+- [ ] Complete testing and finalize the desktop release.
+- [ ] Improve documentation and refine the implementation.
+- [ ] Add GUI controls for adjusting OCR keywords and target metrics.
+- [ ] Support reports that do not require deskewing.
+- [ ] Evaluate a web-based interface as a possible future extension.
 
-Possible extensions/revisions:
+## Usage
 
- - Web based version
-      This project is setup well to be converted into this. Due to the constraints it was created under (privacy, ease of use, and resources), it was determined that a "small" local gui would be more appropriate.
+### Requirements
 
-- GUI for self adjustment of keywords and metrics to be searched for
+**For source-based development:** Python 3, `opencv-python`, `numpy`, `Pillow`, `pypdfium2`, `pytesseract`, Tkinter, and Tesseract OCR with English language data.
 
-- Much optimization could be done, in terms of documentation and functionality/code.
+### Setup
 
-- A deskew-less version for those that it is not applicable to.
+On Windows, download and run the installer from the repository’s **Releases** page. Launch Mullenizer like any other installed application.
 
+### Configuration
 
+Additional configuration instructions are not currently documented.
 
-I am happy to clarify anything to assist with the extensions of others, however do consider this was my first project using many of these libraries.
+### Operation
+
+Open a cardiac device report, verify the extracted fields, manually interpret relevant graphs, and export reviewed results to CSV or JSON. **Check all outputs against the original report.**
+
+## Acknowledgments
+
+Thanks to the OpenCV and Tesseract teams, the maintainers of other dependencies, and the open-source community for sharing tools and examples that made this project possible.
+
+This was my first project using several of these libraries. The code and documentation can be improved, and I’m happy to clarify implementation choices for anyone extending the project.
