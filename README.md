@@ -7,6 +7,8 @@
 
 Mullenizer is a Python desktop application for extracting and reviewing information from cardiac device reports in PDF format. It uses primarily OCR-based document processing to identify report data and combines automated detection with human-guided interpretation of graphs. The goal is to streamline data collection for report reviewers, not replace their judgment or remove human oversight.
 
+This project is not validated for any specific study or other use. It serves as a proof of concept.
+
 The name *Mullenizer* is derived from my surname.
 
 **All extracted data must be independently validated.** No claims are made regarding the application's privacy, reliability, or accuracy.
